@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018020601;          // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2018020801;          // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2016051900;          // Requires this Moodle version.
 $plugin->component = 'antivirus_mimescanner';  // Full name of the plugin (used for diagnostics).
 

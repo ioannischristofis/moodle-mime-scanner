@@ -25,5 +25,5 @@
 
 $string['pluginname'] = 'Mime Scanner antivirus';
 $string['allowedmimetypes'] = 'Allowed MIME types';
-$string['mimeblockersyntax'] = 'Put one mime type per line.';
+$string['mimeblockersyntax'] = 'Put one mime type per line. (e.g image/jpg)';
 $string['mimenotallowed'] = 'The type of the uploaded file is not allowed.';

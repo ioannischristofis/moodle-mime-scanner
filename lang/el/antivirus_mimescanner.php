@@ -25,5 +25,5 @@
 
 $string['pluginname'] = 'Mime Scanner antivirus';
 $string['allowedmimetypes'] = 'Επιτρεπόμενοι τύποι αρχείων ΜΙΜΕ.';
-$string['mimeblockersyntax'] = 'Τοποθετήστε ένα τύπο MIMΕ αρχείου ανά γραμμή.';
+$string['mimeblockersyntax'] = 'Τοποθετήστε ένα τύπο MIMΕ αρχείου ανά γραμμή. (π.χ image/jpg)';
 $string['mimenotallowed'] = 'Ο τύπος του αρχείου προς μεταφόρτωση δεν επιτρέπεται.';
