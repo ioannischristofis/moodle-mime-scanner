@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * MIME Scanner antivirus version file.
+ * MIME Scanner antivirus - Allow only specified MIME files to be uploaded to Moodle.
  *
  * @package    antivirus_mimescanner
  * @copyright  2018 SQLearn
