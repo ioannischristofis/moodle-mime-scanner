@@ -34,9 +34,8 @@ class scanner extends \core\antivirus\scanner{
 
     public function is_configured(){
 
-/*        $isConfigured = trim($this->get_config('allowedmimetypes'));
-        return !empty($isConfigured) ? true : false;*/
-        return true;
+        $allowedMimeTypes = trim($this->get_config('allowedmimetypes'));
+        return !empty($allowedMimeTypes) ? true : false;
     }
 
 
@@ -47,14 +46,13 @@ class scanner extends \core\antivirus\scanner{
             return;
         }
 
-        // Execute the scan using antivirus own scanning tool, we assume it returns 0 if no virus is found, 1 if file is infected, any other number on error.
-        $return = $this->scan_file_using_mime_scanner_tool($file);
+        $allowed = $this->scan_file_using_mime_scanner_tool($file);
 
-        if ($return == 0) {
-            // Perfect, no problem found, file is clean.
+        if ($allowed == 1) {
+            // No problem found, MIME type is allowed.
             return;
-        } else if ($return == 1) {
-
+        } else if ($allowed == 0) {
+            // Problem found, file MIME type is not allowed.
             unlink($file);
             throw new exception('mimenotallowed','antivirus_mimescanner');
 
@@ -65,21 +63,18 @@ class scanner extends \core\antivirus\scanner{
         }
     }
 
-
+    /*
+     * Check if upload file MIME type is allowed from the plugin settings.
+     */
     public function scan_file_using_mime_scanner_tool($file){
 
-        $whitelist = explode("\r\n",$this->get_config('allowedmimetypes'));
+        // All specified MIME types that are allowed.
+        $allowedMimeTypes = explode("\r\n",$this->get_config('allowedmimetypes'));
+
+        //MIME type of the uploaded file.
         $mime = mime_content_type($file);
 
-
-        if (!in_array($mime, $whitelist)) {
-            $return = 1;
-        }else{
-            $return = 0;
-        }
-        // Scanning routine using antivirus own tool goes here.
-        // ...
-        // For example purposes, we assume it returns 0 if no virus is found, 1 if file is infected, any other number on error.
-        return $return;
+        // Returns 0 if MIME type of uploaded file is allowed or 1 if MIME type is not allowed.
+        return in_array($mime, $allowedMimeTypes) ? 1 : 0;
     }
 }
